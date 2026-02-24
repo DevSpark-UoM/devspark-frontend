@@ -1,11 +1,10 @@
+// src/App.js
 import React from 'react';
+import ParentProgressPage from './features/progressMonitoring/ParentProgressPage';
 
 function App() {
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>DevSpark Child Care System</h1>
-      <p>Frontend Setup is Complete!</p>
-    </div>
+    <ParentProgressPage />
   );
 }
 

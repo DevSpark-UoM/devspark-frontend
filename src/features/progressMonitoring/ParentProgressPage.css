@@ -1,0 +1,47 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.dashboard-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.main-content {
+  margin-left: 240px;
+  flex: 1;
+  padding: 30px;
+  text-align: left;
+}
+
+.adaptive-breadcrumb { color: #000000; font-weight: 700; font-size: 0.9rem; }
+.adaptive-title { color: #000000; font-weight: 800; }
+.main-heading { font-size: 2.2rem; margin-bottom: 10px; }
+.adaptive-label { color: #000000; font-weight: 700; }
+.adaptive-card-title { color: #000000; font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+.chart-head { font-size: 1.2rem; margin-bottom: 15px; }
+.adaptive-text { color: #1a202c; font-weight: 600; }
+
+@media (prefers-color-scheme: dark) {
+  .dashboard-wrapper, .main-content { background: #1a202c !important; }
+  .stat-card, .chart-item, .empty-state, .date-filter { background: #2d3748 !important; border-color: #4a5568 !important; }
+  .adaptive-breadcrumb, .adaptive-title, .adaptive-label, .adaptive-card-title, .adaptive-text { color: #ffffff !important; }
+  .adaptive-input { background: #4a5568 !important; color: #ffffff !important; border-color: #718096 !important; }
+}
+
+.data-area-spaced { margin-top: 50px; }
+.margin-left-fix { margin-left: 35px; }
+.stats-grid-horizontal { display: flex; gap: 15px; margin-bottom: 25px; }
+.stat-card { flex: 1; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; }
+.teal-text { color: #3d8f8f !important; font-size: 2.2rem; font-weight: 800; }
+.charts-grid-horizontal { display: flex; gap: 20px; }
+.top-header { display: flex; justify-content: space-between; align-items: center; }
+.child-switch-container { display: flex; gap: 10px; }
+.child-switch-container button { padding: 8px 18px; border-radius: 20px; border: 2.5px solid #3d8f8f; color: #3d8f8f; font-weight: bold; cursor: pointer; background: transparent; }
+.child-switch-container button.active { background: #3d8f8f; color: white; }
+.btn-view { background: #00d1e0; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.date-input { border: 1.5px solid #cbd5e1; padding: 8px; border-radius: 6px; margin: 0 10px; color: #000; font-weight: 600; }
+.empty-state { padding: 100px; text-align: center; color: #3d8f8f; border: 2px dashed #3d8f8f; border-radius: 20px; background: white; margin-top: 20px; }
+
+/* Chart Container Imports */
+@import "../../components/shared/ProgressChart.css";
