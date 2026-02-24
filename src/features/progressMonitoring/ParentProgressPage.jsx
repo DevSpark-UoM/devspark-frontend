@@ -11,6 +11,9 @@ const ParentProgressPage = () => {
   const [showSignOut, setShowSignOut] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  
+  // New State for dynamic calculation
+  const [totalDaysInRange, setTotalDaysInRange] = useState(0);
 
   const currentChild = childrenData[selectedChildId];
 
@@ -19,12 +22,29 @@ const ParentProgressPage = () => {
       alert("Please select both Start and End dates first!");
       return;
     }
-    if (new Date(startDate) >= new Date(endDate)) {
+    
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (start >= end) {
       alert("Invalid Date Range: Please select valid range!");
       setShowData(false);
       return;
     }
+
+    // Dynamic Logic: Calculating total days in selected range
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+    
+    setTotalDaysInRange(diffDays);
     setShowData(true);
+  };
+
+  // Logic to calculate dynamic percentage for the pie chart label
+  const getAttendancePercentage = () => {
+    if (totalDaysInRange === 0) return 0;
+    // attendance represents number of days present
+    return ((currentChild.attendance / totalDaysInRange) * 100).toFixed(1);
   };
 
   return (
@@ -95,10 +115,18 @@ const ParentProgressPage = () => {
                     <div className="pie-container-fix">
                       <ProgressPieChart data={{
                         labels: ['Present', 'Absent'],
-                        datasets: [{ data: [currentChild.attendance, 100 - currentChild.attendance], backgroundColor: ['#3d8f8f', '#edf2f7'], borderWidth: 0 }]
+                        datasets: [{ 
+                          // Present Percentage vs (100 - Present Percentage)
+                          data: [
+                            getAttendancePercentage(), 
+                            (100 - getAttendancePercentage())
+                          ], 
+                          backgroundColor: ['#3d8f8f', '#edf2f7'], 
+                          borderWidth: 0 
+                        }]
                       }} />
                       <div className="pie-center-label">
-                        <span className="percent-num adaptive-title">{currentChild.attendance}%</span>
+                        <span className="percent-num adaptive-title">{getAttendancePercentage()}%</span>
                         <span className="sub-text adaptive-text">Present</span>
                       </div>
                     </div>
