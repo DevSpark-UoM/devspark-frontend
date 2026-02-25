@@ -8,7 +8,7 @@
 }
 
 .main-content {
-  margin-left: 240px;
+  margin-left: 0px; /* Adjust this based on the new Navbar's width later */
   flex: 1;
   padding: 30px;
   text-align: left;
