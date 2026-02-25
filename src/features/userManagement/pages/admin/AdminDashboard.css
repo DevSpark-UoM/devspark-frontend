@@ -1,0 +1,14 @@
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.bottom-card {
+  margin-top: 30px;
+  background: linear-gradient(135deg,#9f44d3,#6c5ce7);
+  color: white;
+  padding: 25px;
+  border-radius: 16px;
+}
