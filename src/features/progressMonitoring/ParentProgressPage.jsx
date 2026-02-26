@@ -1,17 +1,36 @@
 import React, { useState } from 'react';
+import Sidebar from '../../components/parent/Sidebar'; 
 import { ProgressBarChart, ProgressPieChart } from '../../components/shared/ProgressChart';
 import { childrenData } from '../../mockData/progressData';
 import './ParentProgressPage.css';
 
 const ParentProgressPage = () => {
-  // Navbar sammandhapatta states remove panniyaachu
   const [selectedChildId, setSelectedChildId] = useState("C1");
   const [showData, setShowData] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [totalDaysInRange, setTotalDaysInRange] = useState(0);
+  
+  // Pagination States
+  const [currentPage, setCurrentPage] = useState(0);
+  const daysPerPage = 7;
 
   const currentChild = childrenData[selectedChildId];
+
+  // Helper function to generate array of dates
+  const getDatesInRange = (start, end) => {
+    const dates = [];
+    let curr = new Date(start);
+    const stop = new Date(end);
+    while (curr <= stop) {
+      // Formatting as DD/MM
+      dates.push(new Date(curr).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit' }));
+      curr.setDate(curr.getDate() + 1);
+    }
+    return dates;
+  };
+
+  const allDatesInRange = (startDate && endDate) ? getDatesInRange(startDate, endDate) : [];
 
   const handleUpdateView = () => {
     if (!startDate || !endDate) {
@@ -28,6 +47,7 @@ const ParentProgressPage = () => {
     const diffTime = Math.abs(end - start);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
     setTotalDaysInRange(diffDays);
+    setCurrentPage(0); // Reset to first page
     setShowData(true);
   };
 
@@ -36,9 +56,19 @@ const ParentProgressPage = () => {
     return ((currentChild.attendance / totalDaysInRange) * 100).toFixed(1);
   };
 
+  // Pagination Logic for Chart
+  const startIndex = currentPage * daysPerPage;
+  const visibleLabels = allDatesInRange.slice(startIndex, startIndex + daysPerPage);
+  
+  // Mapping engagement data to the current slice
+  // (In real backend, you would fetch only the data for these dates)
+  const visibleData = visibleLabels.map((_, idx) => {
+    return currentChild.engagement[(startIndex + idx) % currentChild.engagement.length];
+  });
+
   return (
     <div className="dashboard-wrapper">
-      {/* Navbar removed as requested */}
+      <Sidebar /> 
       <main className="main-content">
         <header className="top-header">
           <div className="adaptive-breadcrumb">Dashboard / Progress Report</div>
@@ -71,22 +101,60 @@ const ParentProgressPage = () => {
         ) : (
           <div className="data-area-spaced">
             <section className="stats-grid-horizontal">
-              <div className="stat-card"><p className="adaptive-card-title">Days Present</p><h2 className="teal-text">{currentChild.attendance}</h2></div>
-              <div className="stat-card"><p className="adaptive-card-title">Activities</p><h2 className="teal-text">{currentChild.activities}</h2></div>
-              <div className="stat-card"><p className="adaptive-card-title">Avg. Mood</p><h2 className="teal-text">{currentChild.mood}</h2></div>
-              <div className="stat-card"><p className="adaptive-card-title">Meals Provided</p><h2 className="teal-text">{currentChild.meals}</h2></div>
+              <div className="stat-card">
+                <p className="adaptive-card-title">Days Present</p>
+                <h2 className="teal-text">{currentChild.attendance}</h2>
+              </div>
+              <div className="stat-card">
+                <p className="adaptive-card-title">Activities</p>
+                <h2 className="teal-text">{currentChild.activities}</h2>
+              </div>
+              <div className="stat-card">
+                <p className="adaptive-card-title">Avg. Mood</p>
+                <h2 className="teal-text">{currentChild.mood}</h2>
+              </div>
+              <div className="stat-card">
+                <p className="adaptive-card-title">Meals Provided</p>
+                <h2 className="teal-text">{currentChild.meals}</h2>
+              </div>
             </section>
 
             <section className="charts-grid-horizontal">
               <div className="chart-item">
-                <h3 className="adaptive-card-title chart-head">Activity Engagement</h3>
+                <div className="chart-header-flex">
+                  <h3 className="adaptive-card-title chart-head">Activity Engagement</h3>
+                  
+                  {/* PAGINATION CONTROLS (Your Arrow Mockup) */}
+                  <div className="chart-pagination">
+                    <button 
+                      className="nav-arrow" 
+                      onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                      disabled={currentPage === 0}
+                    > ❮ </button>
+                    <span className="page-indicator">
+                      {startIndex + 1} - {Math.min(startIndex + daysPerPage, allDatesInRange.length)} of {allDatesInRange.length} Days
+                    </span>
+                    <button 
+                      className="nav-arrow" 
+                      onClick={() => setCurrentPage(prev => prev + 1)}
+                      disabled={startIndex + daysPerPage >= allDatesInRange.length}
+                    > ❯ </button>
+                  </div>
+                </div>
+
                 <div className="chart-box-fix">
                   <ProgressBarChart data={{
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                    datasets: [{ label: 'Hours', data: currentChild.engagement, backgroundColor: '#3d8f8f', borderRadius: 5 }]
+                    labels: visibleLabels, // Dynamic Dates
+                    datasets: [{ 
+                      label: 'Hours Spent', 
+                      data: visibleData, 
+                      backgroundColor: '#3d8f8f', 
+                      borderRadius: 5 
+                    }]
                   }} />
                 </div>
               </div>
+
               <div className="chart-item pie-item">
                 <h3 className="adaptive-card-title chart-head">Attendance Rate</h3>
                 <div className="pie-container-fix">

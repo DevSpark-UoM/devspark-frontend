@@ -1,0 +1,185 @@
+/* ===== Sidebar base ===== */
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #2f8f9d; /* teal like figma */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+}
+
+/* ===== Header ===== */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 18px;
+  padding: 4px 6px;
+}
+
+.sidebar-header img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* ===== Menu ===== */
+.sidebar-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  padding-top: 20px;
+}
+
+/* links */
+.sidebar-menu a {
+ display: flex;         /* Icon and Text-ah side-by-side veika */
+  align-items: center;   /* Rendu peraiyum orey horizontal line-la center panna */
+  gap: 12px;             /* Icon-kum Text-kum ulla gap */
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+.sidebar-menu a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* active like figma (white pill) */
+.sidebar-menu a.active {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+}
+
+/* section titles */
+.menu-title {
+  margin: 14px 8px 6px;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  opacity: 0.8;
+  font-weight: 700;
+}
+
+/* ===== Footer area (Figma admin card) ===== */
+.sb-footer {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.sb-user-wrap {
+  position: relative;
+}
+
+/* card */
+.sb-usercard {
+  width: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.25); /* darker like figma bottom card */
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.sb-usercard:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* avatar small circle */
+.sb-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: 0 0 auto;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* text */
+.sb-usertext {
+  flex: 1;
+  text-align: left;
+}
+
+.sb-user-name {
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.1;
+}
+
+.sb-user-role {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.sb-caret {
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.sb-caret.up {
+  transform: rotate(180deg);
+}
+
+/* dropdown */
+.sb-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 58px;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+  border: 1px solid #eef2f7;
+}
+
+.sb-dd-item {
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.sb-dd-item:hover {
+  background: #f3f6ff;
+}
+
+.sb-dd-item.danger {
+  color: #dc2626;
+}
+
+.nav-icon {
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.sidebar-menu a.active .nav-icon {
+  opacity: 1;
+}
