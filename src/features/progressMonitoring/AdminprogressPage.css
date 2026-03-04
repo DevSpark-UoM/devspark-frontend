@@ -1,0 +1,247 @@
+.admin-dashboard {
+    padding: 20px;
+}
+
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 0;
+}
+
+.dashboard-header p {
+    color: #999;
+    margin: 5px 0 0 0;
+}
+
+.date-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px 0;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-row {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.child-select,
+.date-input {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.date-input {
+    cursor: text;
+}
+
+.view-report-btn {
+    padding: 10px 20px;
+    background: #20c997;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.view-report-btn:hover {
+    background: #15aabf;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8d7da;
+    border-radius: 6px;
+    border-left: 4px solid #dc3545;
+}
+
+.no-report-message {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.charts-grid:has(.chart-card:only-child) {
+    grid-template-columns: 1fr;
+}
+
+.chart-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.chart-card h2 {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    color: #333;
+    flex-shrink: 0;
+}
+
+.chart-card>div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-height: 0;
+}
+
+.activities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.activity-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    gap: 15px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.activity-time {
+    font-size: 12px;
+    color: #20c997;
+    font-weight: 600;
+}
+
+.activity-desc {
+    color: #333;
+    font-weight: 500;
+}
+
+.activity-count {
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-item {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-count {
+        text-align: left;
+    }
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 15px;
+    min-height: 120px;
+    border-left: 5px solid #20c997;
+}
+
+.stat-card-green {
+    border-left-color: #20c997;
+}
+
+.stat-card-blue {
+    border-left-color: #15aabf;
+}
+
+.stat-card-orange {
+    border-left-color: #ffc107;
+}
+
+.stat-card-red {
+    border-left-color: #dc3545;
+}
+
+.stat-icon {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-content h3 {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin: 5px 0;
+}
+
+.stat-content p {
+    margin: 0;
+    color: #999;
+    font-size: 12px;
+}

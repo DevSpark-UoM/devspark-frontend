@@ -1,15 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-// Import the specific icons from the library
-import { 
-  Home, 
-  Users, 
-  LineChart, 
-  CreditCard, 
-  Bell, 
-  MessageSquare, 
-  UserCircle 
-} from "lucide-react";
 import "./Sidebar.css";
 
 import Logo from "../../assets/logo.jpeg";
@@ -38,28 +28,14 @@ export default function Sidebar() {
       </div>
 
       <nav className="sidebar-menu">
-        {/* Exact symbols matched to your Figma pattern */}
-        <NavLink to="/parent/dashboard">
-          <Home size={18} className="nav-icon" /> Home
-        </NavLink>
-        <NavLink to="/parent/children">
-          <Users size={18} className="nav-icon" /> My Children
-        </NavLink>
-        <NavLink to="/parent/progress">
-          <LineChart size={18} className="nav-icon" /> Progress
-        </NavLink>
-        <NavLink to="/parent/payments">
-          <CreditCard size={18} className="nav-icon" /> Payments
-        </NavLink>
-        <NavLink to="/parent/notifications">
-          <Bell size={18} className="nav-icon" /> Notifications
-        </NavLink>
-        <NavLink to="/parent/messaging">
-          <MessageSquare size={18} className="nav-icon" /> Messaging
-        </NavLink>
-        <NavLink to="/parent/profile">
-          <UserCircle size={18} className="nav-icon" /> My Profile
-        </NavLink>
+        {/* Icons removed for a cleaner look matching your mockup */}
+        <NavLink to="/parent/dashboard">Home</NavLink>
+        <NavLink to="/parent/children">My Children</NavLink>
+        <NavLink to="/parent/progress">Progress</NavLink>
+        <NavLink to="/parent/payments">Payments</NavLink>
+        <NavLink to="/parent/notifications">Notifications</NavLink>
+        <NavLink to="/parent/messaging">Messaging</NavLink>
+        <NavLink to="/parent/profile">My Profile</NavLink>
       </nav>
 
       <div className="sb-footer">

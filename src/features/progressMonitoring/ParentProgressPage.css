@@ -33,15 +33,15 @@
 .margin-left-fix { margin-left: 35px; }
 .stats-grid-horizontal { display: flex; gap: 15px; margin-bottom: 25px; }
 .stat-card { flex: 1; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; }
-.teal-text { color: #3d8f8f !important; font-size: 2.2rem; font-weight: 800; }
+.teal-text { color: #2f8f9d !important; font-size: 2.2rem; font-weight: 800; }
 .charts-grid-horizontal { display: flex; gap: 20px; }
 .top-header { display: flex; justify-content: space-between; align-items: center; }
 .child-switch-container { display: flex; gap: 10px; }
-.child-switch-container button { padding: 8px 18px; border-radius: 20px; border: 2.5px solid #3d8f8f; color: #3d8f8f; font-weight: bold; cursor: pointer; background: transparent; }
-.child-switch-container button.active { background: #3d8f8f; color: white; }
+.child-switch-container button { padding: 8px 18px; border-radius: 20px; border: 2.5px solid #2f8f9d; color: #2f8f9d; font-weight: bold; cursor: pointer; background: transparent; }
+.child-switch-container button.active { background: #2f8f9d; color: white; }
 .btn-view { background: #00d1e0; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 .date-input { border: 1.5px solid #cbd5e1; padding: 8px; border-radius: 6px; margin: 0 10px; color: #000; font-weight: 600; }
-.empty-state { padding: 100px; text-align: center; color: #3d8f8f; border: 2px dashed #3d8f8f; border-radius: 20px; background: white; margin-top: 20px; }
+.empty-state { padding: 100px; text-align: center; color: #2f8f9d; border: 2px dashed #2f8f9d; border-radius: 20px; background: white; margin-top: 20px; }
 
 .chart-header-flex {
   display: flex;
@@ -57,7 +57,7 @@
 }
 
 .nav-arrow {
-  background: #3d8f8f;
+  background: #2f8f9d;
   color: white;
   border: none;
   width: 28px;
@@ -80,7 +80,7 @@
 .page-indicator {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #3d8f8f;
+  color: #2f8f9d;
 }
 
 /* Ensure chart box fits well */
