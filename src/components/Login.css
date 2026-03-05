@@ -1,0 +1,78 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f9fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-box {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: #666;
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+.role-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.role-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.role-btn span {
+    font-size: 20px;
+}
+
+.admin-btn {
+    background-color: #20c997;
+    color: white;
+    box-shadow: 0 4px 10px rgba(32, 201, 151, 0.2);
+}
+
+.admin-btn:hover {
+    background-color: #1aa179;
+    transform: translateY(-2px);
+}
+
+.parent-btn {
+    background-color: #4a90e2;
+    color: white;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
+}
+
+.parent-btn:hover {
+    background-color: #357ebd;
+    transform: translateY(-2px);
+}

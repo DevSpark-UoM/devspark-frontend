@@ -2,8 +2,9 @@
 .sidebar {
   width: 260px;
   min-height: 100vh;
-  background: #2f8f9d; /* teal like figma */
-  color: #ffffff;
+  background: #2f8f9d;
+  /* teal like figma */
+  color: #000000 !important;
   display: flex;
   flex-direction: column;
   padding: 18px 14px;
@@ -18,6 +19,7 @@
   font-size: 16px;
   margin-bottom: 18px;
   padding: 4px 6px;
+  color: #000000 !important;
 }
 
 .sidebar-header img {
@@ -40,20 +42,23 @@
   padding: 10px 12px;
   border-radius: 10px;
   text-decoration: none;
-  color: #ffffff;
+  color: #333333 !important;
+  /* Make text black as requested */
   font-size: 14px;
   font-weight: 600;
   opacity: 0.95;
 }
 
 .sidebar-menu a:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.4);
+  /* Make hover state lighter to see behind black */
 }
 
 /* active like figma (white pill) */
 .sidebar-menu a.active {
-  background: rgba(255, 255, 255, 0.92);
-  color: #0f172a;
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #000000 !important;
+  /* Text matches the background teal to create pill effect */
 }
 
 /* section titles */
@@ -63,12 +68,14 @@
   letter-spacing: 0.6px;
   opacity: 0.8;
   font-weight: 700;
+  color: #000000 !important;
+  /* Titles made black as well */
 }
 
 /* ===== Footer area (Figma admin card) ===== */
 .sb-footer {
   padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .sb-user-wrap {
@@ -79,18 +86,19 @@
 .sb-usercard {
   width: 100%;
   border: 0;
-  background: rgba(0, 0, 0, 0.25); /* darker like figma bottom card */
+  background: rgba(255, 255, 255, 0.4);
+  /* Lighter to show black text clearly */
   border-radius: 14px;
   padding: 10px 12px;
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  color: #fff;
+  color: #000000 !important;
 }
 
 .sb-usercard:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /* avatar small circle */
@@ -114,6 +122,7 @@
 .sb-usertext {
   flex: 1;
   text-align: left;
+  color: #000000 !important;
 }
 
 .sb-user-name {

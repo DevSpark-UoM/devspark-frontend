@@ -54,7 +54,7 @@ export default function Sidebar() {
         <NavLink to="/admin/messaging">Messaging</NavLink>
         <NavLink to="/admin/billing">Billing</NavLink>
         <NavLink to="/admin/payrolls">Staff & Payrolls</NavLink>
-        <NavLink to="/admin/learning">Learning</NavLink>
+        <NavLink to="/admin/progress">Learning</NavLink>
         <NavLink to="/admin/paperwork">Paperwork</NavLink>
       </nav>
 
