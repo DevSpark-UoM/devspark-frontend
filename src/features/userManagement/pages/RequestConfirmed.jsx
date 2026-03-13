@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./RequestForm.css"; // reuse same styling
 
-import BrandLogo from "../assets/logo.jpeg";
-import ConfirmImg from "../assets/request-confirm.png"; // add image
+import BrandLogo from "../../../assets/logo.jpeg";
+import ConfirmImg from "../../../assets/request-confirm.png";
 
 const RequestConfirmed = () => {
   return (
@@ -14,9 +14,9 @@ const RequestConfirmed = () => {
           <span className="rf-name">Sprouty</span>
         </div>
 
-        <Link className="rf-top-link" to="/">
-          Back to Login
-        </Link>
+     <button className="btn" style={{ width: 220 }}>
+                Home
+              </button>
       </header>
 
       <main className="rf-wrap">
@@ -39,9 +39,9 @@ const RequestConfirmed = () => {
          You will receive an email confirmation with log In instructions once
                 your request is approved </p>
 
-            <Link to="/" style={{ display: "inline-block" }}>
+            <Link to="/login" style={{ display: "inline-block" }}>
               <button className="rf-btn" style={{ width: 220 }}>
-                Back to Log in
+                Back to Log In
               </button>
             </Link>
           </div>
@@ -54,3 +54,5 @@ const RequestConfirmed = () => {
     </div>
   );
 };
+
+export default RequestConfirmed;

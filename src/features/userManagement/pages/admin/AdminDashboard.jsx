@@ -1,4 +1,4 @@
-import StatCard from "../../components/admin/StatCard";
+import StatCard from "../../../../components/admin/StatCard";
 import "./AdminDashboard.css";
 
 export default function AdminDashboard() {

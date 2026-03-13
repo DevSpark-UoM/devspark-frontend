@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RequestForm.css";
 
-import BrandLogo from "../assets/logo.jpeg";
-import SideImage from "../assets/request-side.png";
+import BrandLogo from "../../../assets/logo.jpeg";
+import SideImage from "../../../assets/request-side.png";
 
 const RequestForm = () => {
   const navigate = useNavigate();
