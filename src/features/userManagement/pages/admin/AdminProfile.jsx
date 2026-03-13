@@ -1,6 +1,5 @@
 import { useMemo, useRef, useState } from "react";
 import "./AdminProfile.css";
-import AdminSettingsPanel from "../../pages/admin/AdminSettingsPanel";
 import DefaultAvatar from "../../../../assets/admin-avatar.jpeg";
 
 export default function AdminProfile() {
@@ -23,7 +22,6 @@ export default function AdminProfile() {
 
   const [form, setForm] = useState(initial);
   const [avatar, setAvatar] = useState(savedAvatar || DefaultAvatar);
-  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const fileRef = useRef(null);
 
@@ -72,16 +70,6 @@ export default function AdminProfile() {
             Manage your personal information and account settings.
           </p>
         </div>
-
-        {/* Settings button (top-right) */}
-        <button
-          className="ap-gear"
-          type="button"
-          aria-label="Settings"
-          onClick={() => setSettingsOpen(true)}
-        >
-          ⚙
-        </button>
       </div>
 
       <div className="ap-divider" />
@@ -191,12 +179,6 @@ export default function AdminProfile() {
           </div>
         </form>
       </div>
-
-      {/* ✅ Settings Drawer */}
-      <AdminSettingsPanel
-        open={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-      />
     </div>
   );
 }

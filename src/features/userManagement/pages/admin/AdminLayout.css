@@ -6,5 +6,10 @@
 .admin-main {
   flex: 1;
   padding: 18px 20px;
-  background: #f6f7fb; /* optional */
+  background: #f6f7fb;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .admin-main {
+  background: #141414;
 }

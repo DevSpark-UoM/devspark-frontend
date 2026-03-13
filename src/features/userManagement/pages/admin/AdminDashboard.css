@@ -12,3 +12,8 @@
   padding: 25px;
   border-radius: 16px;
 }
+
+/* ===== Dark Mode Overrides ===== */
+body.dark-mode .stats-grid {
+  /* Let stats grid children handle their own dark mode */
+}

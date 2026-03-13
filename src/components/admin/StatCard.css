@@ -18,3 +18,21 @@
   color: rgb(153, 153, 153);
   font-size: 12px;
 }
+
+/* ===== Dark Mode Overrides ===== */
+body.dark-mode .stat-card {
+  background: rgba(44, 44, 46, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .stat-title {
+  color: #a0a0ab;
+}
+
+body.dark-mode .stat-card h2 {
+  color: #ffffff;
+}
+
+body.dark-mode .stat-card small {
+  color: #888888;
+}

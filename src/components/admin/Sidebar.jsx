@@ -5,7 +5,7 @@ import "./Sidebar.css";
 import Logo from "../../assets/logo.jpeg";
 import AvatarImg from "../../assets/admin-avatar.jpeg"; // ✅ add this image file
 
-export default function Sidebar() {
+export default function Sidebar({ onOpenSettings }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
@@ -82,6 +82,15 @@ export default function Sidebar() {
             <div className="sb-dropdown">
               <button className="sb-dd-item" onClick={goProfile}>
                 Profile
+              </button>
+              <button 
+                className="sb-dd-item" 
+                onClick={() => {
+                  setOpen(false);
+                  if (onOpenSettings) onOpenSettings();
+                }}
+              >
+                Settings
               </button>
               <button className="sb-dd-item danger" onClick={signOut}>
                 Sign out

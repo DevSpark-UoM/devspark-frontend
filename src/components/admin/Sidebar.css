@@ -169,3 +169,49 @@
 .sb-dd-item.danger {
   color: #dc2626;
 }
+
+/* ===== Dark Mode Overrides ===== */
+body.dark-mode .sidebar {
+  background: #1a1a1c;
+  border-right: 1px solid #333;
+}
+
+body.dark-mode .sidebar-menu a {
+  color: #f0f0f0;
+}
+
+body.dark-mode .sidebar-menu a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .sidebar-menu a.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+body.dark-mode .sb-usercard {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .sb-usercard:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .sb-dropdown {
+  background: #2c2c2e;
+  color: #f0f0f0;
+  border: 1px solid #444;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .sb-dd-item {
+  color: #f0f0f0;
+}
+
+body.dark-mode .sb-dd-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .sb-dd-item.danger {
+  color: #ff4d4d;
+}
