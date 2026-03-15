@@ -57,7 +57,7 @@ export default function LandingPage() {
             </p>
 
             <div className="hero-cta">
-              <button className="btn primary" onClick={() => navigate("/login")}>
+              <button className="btn primary" onClick={() => navigate("/get-started")}>
                 Try It Out
               </button>
 
@@ -97,8 +97,8 @@ export default function LandingPage() {
 
           <div className="mock">
             <img
-              src="https://images.unsplash.com/photo-1740721455292-e5cd29544381?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
-              alt="SPROUTY Dashboard"
+              src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
+              alt="Children learning and playing"
             />
           </div>
         </div>
