@@ -172,36 +172,6 @@ body.dark-mode .settings-item-left {
   color: #fff;
 }
 
-.settings-text-column {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.settings-item-desc {
-  font-size: 11px;
-  color: #888;
-  font-weight: 400;
-  margin: 0;
-}
-
-body.dark-mode .settings-item-desc {
-  color: #666;
-}
-
-.status-text {
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.status-text.on {
-  color: #156555;
-}
-
-.status-text.off {
-  color: #94a3b8;
-}
-
 /* Colored Icons */
 .icon-circle {
   width: 36px;
@@ -274,39 +244,4 @@ input:checked + .toggle-slider {
 
 input:checked + .toggle-slider:before {
   transform: translateX(20px);
-}
-
-/* Custom Toast Styles */
-.custom-toast {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  padding: 12px 24px;
-  background: #333;
-  color: #fff;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  z-index: 2000;
-  animation: toastFadeIn 0.3s ease-out;
-}
-
-.custom-toast.success {
-  border-left: 4px solid #156555;
-}
-
-.custom-toast.error {
-  border-left: 4px solid #ef4444;
-}
-
-@keyframes toastFadeIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }

@@ -1,0 +1,226 @@
+.mu-container {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mu-header {
+  margin-bottom: 32px;
+}
+
+.mu-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 8px;
+}
+
+.mu-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.mu-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.mu-search-bar {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0 16px;
+  height: 48px;
+  color: var(--text-muted);
+}
+
+.mu-search-bar input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0 12px;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.mu-search-bar input:focus {
+  outline: none;
+}
+
+.mu-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0 20px;
+  height: 48px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.2s;
+}
+
+.mu-filter-btn:hover {
+  background: #f8fafc;
+}
+
+.mu-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.mu-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mu-table th {
+  background: #f8fafc;
+  padding: 16px 24px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mu-table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.mu-table tr:last-child td {
+  border-bottom: none;
+}
+
+.mu-user-name {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.mu-role-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mu-role-badge.parent { background: #e0f2fe; color: #0369a1; }
+.mu-role-badge.staff { background: #fef3c7; color: #92400e; }
+
+.mu-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mu-status-pill.active { background: #dcfce7; color: #15803d; }
+.mu-status-pill.active::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #15803d;
+  border-radius: 50%;
+}
+
+.mu-status-pill.deactivated { background: #fee2e2; color: #b91c1c; }
+.mu-status-pill.deactivated::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #b91c1c;
+  border-radius: 50%;
+}
+
+.mu-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mu-status-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.mu-status-toggle.active { color: #10b981; }
+.mu-status-toggle.deactivated { color: #94a3b8; }
+
+.mu-status-toggle:hover { opacity: 0.8; }
+
+.mu-more-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.mu-more-btn:hover { background: #f1f5f9; }
+
+/* Dark Mode Overrides */
+.dark-mode .mu-search-bar {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark-mode .mu-search-bar input {
+  color: #f1f5f9;
+}
+
+.dark-mode .mu-filter-btn {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.dark-mode .mu-filter-btn:hover {
+  background: #334155;
+}
+
+.dark-mode .mu-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark-mode .mu-table th {
+  background: #0f172a;
+}
+
+.dark-mode .mu-table td {
+  border-bottom-color: #334155;
+}
+
+.dark-mode .mu-more-btn:hover {
+  background: #334155;
+}

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./AdminSettingsPanel.css";
-import { useTheme } from "../../../../context/ThemeContext";
+import React from "react";
+import "./SettingsPanel.css";
+import { useTheme } from "../../../context/ThemeContext";
 
 // Icons
 import {
-  MdClose,
+  MdClear,
   MdNightsStay,
   MdNotifications,
   MdLock,
@@ -15,47 +15,30 @@ import {
   MdChevronRight,
 } from "react-icons/md";
 
-// Example Avatar (can be replaced with actual user avatar)
-import AvatarImage from "../../../../assets/admin-avatar.jpeg";
-
-export default function AdminSettingsPanel({ isOpen, onClose }) {
+/**
+ * Common SettingsPanel component for all user types.
+ * 
+ * @param {boolean} isOpen - Whether the panel is open.
+ * @param {function} onClose - Function to close the panel.
+ * @param {object} user - User information { name, role, avatar, location }.
+ * @param {boolean} notificationsEnabled - Whether notifications are enabled.
+ * @param {function} onToggleNotifications - Function to toggle notifications.
+ * @param {string} notificationDesc - Description for the notification setting.
+ */
+export default function SettingsPanel({
+  isOpen,
+  onClose,
+  user,
+  notificationsEnabled,
+  onToggleNotifications,
+  twoFactorEnabled,
+  onToggle2FA,
+  notificationDesc = "Receive alerts for important updates"
+}) {
   const { isDarkMode, toggleTheme } = useTheme();
-  const [toastMessage, setToastMessage] = useState(null);
-  
-  // Load initial state from localStorage
-  const [notificationsEnabled, setNotificationsEnabled] = useState(() => {
-    const saved = localStorage.getItem("admin_notifications_enabled");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-
-  // Save to localStorage when state changes
-  useEffect(() => {
-    localStorage.setItem("admin_notifications_enabled", JSON.stringify(notificationsEnabled));
-  }, [notificationsEnabled]);
-
-  const showToast = (msg, type) => {
-    setToastMessage({ msg, type });
-    setTimeout(() => setToastMessage(null), 3000);
-  };
-
-  const handleToggleNotifications = () => {
-    const newState = !notificationsEnabled;
-    setNotificationsEnabled(newState);
-    
-    if (newState) {
-      showToast('Notifications Turned On', 'success');
-    } else {
-      showToast('Notifications Turned Off', 'error');
-    }
-  };
 
   return (
     <div className={`settings-overlay ${isOpen ? "open" : ""}`} onClick={onClose}>
-      {toastMessage && (
-        <div className={`custom-toast ${toastMessage.type}`}>
-          {toastMessage.msg}
-        </div>
-      )}
 
       {/* 
         Prevent clicks inside the panel from closing the overlay 
@@ -64,20 +47,26 @@ export default function AdminSettingsPanel({ isOpen, onClose }) {
 
         {/* Header & Avatar */}
         <div className="settings-header">
-          <button className="settings-close-btn" onClick={onClose}>
-            <MdClose />
+          <button className="settings-close-btn" onClick={onClose} aria-label="Close settings">
+            <span style={{ fontSize: '24px', fontWeight: 'bold' }}>&times;</span>
           </button>
 
           <div className="profile-avatar-wrapper">
-            <img src={AvatarImage} alt="User Avatar" className="profile-avatar" />
+            {user?.avatar ? (
+              <img src={user.avatar} alt="User Avatar" className="profile-avatar" />
+            ) : (
+              <div className="ps-avatar-placeholder">
+                <MdPerson size={32} color="#94a3b8" />
+              </div>
+            )}
           </div>
-          <h2 className="profile-name">Anu Agarwal</h2>
-          <div className="profile-location">
-            <MdPerson style={{ fontSize: '12px' }} /> Sprouty Daycare Center
-          </div>
-          <div className="profile-role">Administrator</div>
-
-
+          <h2 className="profile-name">{user?.name || "User Name"}</h2>
+          {user?.location && (
+            <div className="profile-location">
+              <MdPerson style={{ fontSize: '12px', marginRight: '4px' }} /> {user.location}
+            </div>
+          )}
+          <div className="profile-role">{user?.role || "User"}</div>
         </div>
 
         {/* Settings List Card */}
@@ -107,19 +96,19 @@ export default function AdminSettingsPanel({ isOpen, onClose }) {
             </li>
 
             {/* Notifications */}
-            <li className="settings-list-item" onClick={handleToggleNotifications}>
+            <li className="settings-list-item" onClick={onToggleNotifications}>
               <div className="settings-item-left">
                 <div className="icon-circle icon-notifications">
                   <MdNotifications />
                 </div>
                 <div className="settings-text-column">
                   <span>Notifications</span>
-                  <p className="settings-item-desc">Receive alerts for new staff requests</p>
+                  <p className="settings-item-desc">{notificationDesc}</p>
                 </div>
               </div>
               <div className="settings-item-right">
                 <span className={`status-text ${notificationsEnabled ? "on" : "off"}`}>
-                  {notificationsEnabled ? "ON" : "OFF"}
+                  &lt;{notificationsEnabled ? "ON" : "OFF"}&gt;
                 </span>
                 <MdChevronRight size={20} />
               </div>
@@ -138,29 +127,26 @@ export default function AdminSettingsPanel({ isOpen, onClose }) {
               </div>
             </li>
 
-            {/* Security */}
+            {/* Security & 2FA */}
             <li className="settings-list-item">
               <div className="settings-item-left">
                 <div className="icon-circle icon-security">
                   <MdSecurity />
                 </div>
-                <span>Security</span>
-              </div>
-              <div className="settings-item-right">
-                <MdChevronRight size={20} />
-              </div>
-            </li>
-
-            {/* Account */}
-            <li className="settings-list-item">
-              <div className="settings-item-left">
-                <div className="icon-circle icon-account">
-                  <MdPerson />
+                <div className="settings-text-column">
+                  <span>Two-Factor Auth (2FA)</span>
+                  <p className="settings-item-desc">Extra layer of security for your account</p>
                 </div>
-                <span>Account</span>
               </div>
               <div className="settings-item-right">
-                <MdChevronRight size={20} />
+                <label className="toggle-switch">
+                  <input
+                    type="checkbox"
+                    checked={twoFactorEnabled}
+                    onChange={onToggle2FA}
+                  />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
             </li>
 

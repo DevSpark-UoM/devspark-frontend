@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./AcceptInvite.css";
 
+import BrandLogo from "../../../../assets/logo.png";
+
 export default function AcceptInvite() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ export default function AcceptInvite() {
   const [pw, setPw] = useState("");
   const [cpw, setCpw] = useState("");
   const [msg, setMsg] = useState("");
+  const currentLogo = BrandLogo;
 
   // ✅ demo: token -> email mapping (frontend only)
   useEffect(() => {
@@ -27,10 +30,11 @@ export default function AcceptInvite() {
       return;
     }
 
-    // For frontend demo:
-    // In real backend: GET /invite/validate?token=...
-    // Backend returns invited staff email + role
-    const demoEmail = "fernando123@gmail.com"; // change if you want
+    // For frontend demo: We simulate validating the token generated from Admin Dashboard
+    // e.g. "token_abc123_1" -> extract the "1" to simulate fetching user data
+    const parts = token.split("_");
+    const demoEmail = parts.length === 3 ? `teacher_${parts[2]}@sprouty.com` : "new.staff@sprouty.com";
+
     setEmail(demoEmail);
 
     setStatus("ready");
@@ -62,8 +66,9 @@ export default function AcceptInvite() {
       // Later backend: POST /invite/accept { token, password }
       await new Promise((r) => setTimeout(r, 700));
 
-      setStatus("activated");
-      setMsg("Account activated — you can login now ✅");
+      // User requested to completely bypass the success log in screen
+      // and directly log the user into the dashboard.
+      navigate("/staff/dashboard");
     } catch {
       setStatus("ready");
       setMsg("Something went wrong. Please try again.");
@@ -73,6 +78,12 @@ export default function AcceptInvite() {
   if (status === "loading") {
     return (
       <div className="ai-page">
+        <header className="ai-topbar">
+          <div className="ai-brand">
+            <img className="ai-logo" src={BrandLogo} alt="Sprouty" />
+            <span className="ai-brand-name">SPROUTY</span>
+          </div>
+        </header>
         <div className="ai-card">
           <h2>Checking invitation...</h2>
         </div>
@@ -83,6 +94,12 @@ export default function AcceptInvite() {
   if (status === "invalid") {
     return (
       <div className="ai-page">
+        <header className="ai-topbar">
+          <div className="ai-brand">
+            <img className="ai-logo" src={BrandLogo} alt="Sprouty" />
+            <span className="ai-brand-name">Sprouty</span>
+          </div>
+        </header>
         <div className="ai-card">
           <h1 className="ai-title">Invitation Error</h1>
           <p className="ai-alert error">{msg}</p>
@@ -96,6 +113,13 @@ export default function AcceptInvite() {
 
   return (
     <div className="ai-page">
+      <header className="ai-topbar">
+        <div className="ai-brand">
+          <img className="ai-logo" src={BrandLogo} alt="Sprouty" />
+          <span className="ai-brand-name">Sprouty</span>
+        </div>
+      </header>
+
       <div className="ai-card">
         <h1 className="ai-title">Welcome! You’ve been invited as Staff</h1>
         <p className="ai-sub">
@@ -145,7 +169,7 @@ export default function AcceptInvite() {
         ) : (
           <>
             <div className="ai-alert ok">{msg}</div>
-            <button className="ai-btn" onClick={() => navigate("/staff/login")}>
+            <button className="ai-btn" onClick={() => navigate("/login")}>
               Log In
             </button>
           </>

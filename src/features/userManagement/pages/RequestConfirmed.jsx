@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./RequestForm.css"; // reuse same styling
 
-import BrandLogo from "../../../assets/logo.jpeg";
+import BrandLogo from "../../../assets/logo.png";
 import ConfirmImg from "../../../assets/request-confirm.png";
 
 const RequestConfirmed = () => {
+  const currentLogo = BrandLogo;
   return (
     <div className="rf-page">
       <header className="rf-topbar">
         <div className="rf-brand">
           <img className="rf-logo" src={BrandLogo} alt="Sprouty logo" />
-          <span className="rf-name">Sprouty</span>
+          <span className="rf-name">SPROUTY</span>
         </div>
 
-     <button className="btn" style={{ width: 220 }}>
-                Home
-              </button>
+        <button className="btn" style={{ width: 220 }}>
+          Home
+        </button>
       </header>
 
       <main className="rf-wrap">
@@ -35,9 +36,9 @@ const RequestConfirmed = () => {
             <p className="rf-subtitle" style={{ maxWidth: 520, margin: "0 auto 18px" }}>
               Thank you for requesting access. The childcare administrator has been
               notified and will review your details shortly.</p>
-         <p className="rf-subtitle" style={{ maxWidth: 520, margin: "0 auto 18px" }}>
-         You will receive an email confirmation with log In instructions once
-                your request is approved </p>
+            <p className="rf-subtitle" style={{ maxWidth: 520, margin: "0 auto 18px" }}>
+              You will receive an email confirmation with log In instructions once
+              your request is approved </p>
 
             <Link to="/login" style={{ display: "inline-block" }}>
               <button className="rf-btn" style={{ width: 220 }}>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./AdminSettingsPanel.css";
+import React from "react";
+import "./ParentSettingsPanel.css";
 import { useTheme } from "../../../../context/ThemeContext";
 
 // Icons
@@ -15,47 +15,11 @@ import {
   MdChevronRight,
 } from "react-icons/md";
 
-// Example Avatar (can be replaced with actual user avatar)
-import AvatarImage from "../../../../assets/admin-avatar.jpeg";
-
-export default function AdminSettingsPanel({ isOpen, onClose }) {
+export default function ParentSettingsPanel({ isOpen, onClose }) {
   const { isDarkMode, toggleTheme } = useTheme();
-  const [toastMessage, setToastMessage] = useState(null);
-  
-  // Load initial state from localStorage
-  const [notificationsEnabled, setNotificationsEnabled] = useState(() => {
-    const saved = localStorage.getItem("admin_notifications_enabled");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-
-  // Save to localStorage when state changes
-  useEffect(() => {
-    localStorage.setItem("admin_notifications_enabled", JSON.stringify(notificationsEnabled));
-  }, [notificationsEnabled]);
-
-  const showToast = (msg, type) => {
-    setToastMessage({ msg, type });
-    setTimeout(() => setToastMessage(null), 3000);
-  };
-
-  const handleToggleNotifications = () => {
-    const newState = !notificationsEnabled;
-    setNotificationsEnabled(newState);
-    
-    if (newState) {
-      showToast('Notifications Turned On', 'success');
-    } else {
-      showToast('Notifications Turned Off', 'error');
-    }
-  };
 
   return (
     <div className={`settings-overlay ${isOpen ? "open" : ""}`} onClick={onClose}>
-      {toastMessage && (
-        <div className={`custom-toast ${toastMessage.type}`}>
-          {toastMessage.msg}
-        </div>
-      )}
 
       {/* 
         Prevent clicks inside the panel from closing the overlay 
@@ -69,15 +33,10 @@ export default function AdminSettingsPanel({ isOpen, onClose }) {
           </button>
 
           <div className="profile-avatar-wrapper">
-            <img src={AvatarImage} alt="User Avatar" className="profile-avatar" />
+            <div className="ps-avatar-placeholder" style={{width: "100%", height: "100%", backgroundColor: "#e5e7eb", borderRadius: "50%"}} />
           </div>
-          <h2 className="profile-name">Anu Agarwal</h2>
-          <div className="profile-location">
-            <MdPerson style={{ fontSize: '12px' }} /> Sprouty Daycare Center
-          </div>
-          <div className="profile-role">Administrator</div>
-
-
+          <h2 className="profile-name">Sarah Jenkins</h2>
+          <div className="profile-role" style={{marginBottom: "20px"}}>Parent</div>
         </div>
 
         {/* Settings List Card */}
@@ -107,21 +66,15 @@ export default function AdminSettingsPanel({ isOpen, onClose }) {
             </li>
 
             {/* Notifications */}
-            <li className="settings-list-item" onClick={handleToggleNotifications}>
+            <li className="settings-list-item">
               <div className="settings-item-left">
                 <div className="icon-circle icon-notifications">
                   <MdNotifications />
                 </div>
-                <div className="settings-text-column">
-                  <span>Notifications</span>
-                  <p className="settings-item-desc">Receive alerts for new staff requests</p>
-                </div>
+                <span>Notifications</span>
               </div>
               <div className="settings-item-right">
-                <span className={`status-text ${notificationsEnabled ? "on" : "off"}`}>
-                  {notificationsEnabled ? "ON" : "OFF"}
-                </span>
-                <MdChevronRight size={20} />
+                On <MdChevronRight size={20} />
               </div>
             </li>
 

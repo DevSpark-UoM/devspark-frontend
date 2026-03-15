@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RequestForm.css";
 
-import BrandLogo from "../../../assets/logo.jpeg";
+import BrandLogo from "../../../assets/logo.png";
 import SideImage from "../../../assets/request-side.png";
 
 const RequestForm = () => {
@@ -39,7 +39,7 @@ const RequestForm = () => {
       <header className="rf-topbar">
         <div className="rf-brand">
           <img className="rf-logo" src={BrandLogo} alt="Sprouty" />
-          <span className="rf-brand-name">Sprouty</span>
+          <span className="rf-brand-name">SPROUTY</span>
         </div>
 
         <Link className="rf-back" to="/login">
@@ -162,9 +162,9 @@ const RequestForm = () => {
               </button>
 
               <p className="rf-bottom">
-                Don&apos;t have an account?{" "}
-                <Link className="rf-link" to="/request-form">
-                  Sign up here
+                Already have an account?{" "}
+                <Link className="rf-link" to="/login">
+                  Login here
                 </Link>
               </p>
             </form>

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Layers, Zap, Heart, PlayCircle } from "lucide-react";
+import { MdLayers, MdFlashOn as Zap, MdFavorite as Heart, MdPlayCircleFilled as PlayCircle } from "react-icons/md";
 import "./Landing.css";
 
-import BrandLogo from "../../../assets/logo.jpeg";
+import BrandLogo from "../../../assets/logo.png";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+
+  const currentLogo = BrandLogo;
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -17,13 +19,13 @@ export default function LandingPage() {
     <div className="lp">
       {/* ===== Topbar ===== */}
       <header className="lp-nav">
-        <div className="lp-brand" onClick={() => scrollTo("hero")} role="button" tabIndex={0}>
+        <div className="lp-brand">
           <img src={BrandLogo} alt="Sprouty" className="lp-logo" />
           <span className="lp-name">SPROUTY</span>
         </div>
 
         <nav className="lp-menu">
-          
+
           <button className="lp-navlink" onClick={() => scrollTo("why")}>Why</button>
           <button className="lp-navlink" onClick={() => scrollTo("features")}>Features</button>
           <button className="lp-navlink" onClick={() => scrollTo("safety")}>Safety</button>
@@ -32,7 +34,7 @@ export default function LandingPage() {
 
         <div className="lp-actions">
           <Link className="lp-link" to="/login">Log In</Link>
-          <Link className="lp-btn" to="/login">Get Started</Link>
+          <button className="lp-btn" onClick={() => navigate("/get-started")}>Get Started</button>
         </div>
       </header>
 
@@ -45,11 +47,11 @@ export default function LandingPage() {
             <h1 className="hero-title">
               Less Paperwork,
               <br />
-              More Play.
+              More Playtime
             </h1>
 
             <p className="hero-text">
-              SproutyTeam saves everything fot your nursery and childcare service into one online ,
+              SproutyTeam saves everything for your nursery and childcare service into one online,
               organized space so you can stay
               present with every child.
             </p>
@@ -80,7 +82,7 @@ export default function LandingPage() {
 
       {/* ===== 2) WHY ===== */}
       <section id="why" className="why">
-        <div className="wrap two-col">
+        <div className="wrap wrap-cyan two-col">
           <div>
             <h2 className="h2">Why Choose SPROUTY?</h2>
             <p className="p">
@@ -96,7 +98,7 @@ export default function LandingPage() {
           <div className="mock">
             <img
               src="https://images.unsplash.com/photo-1740721455292-e5cd29544381?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
-              alt="Tablet mockup"
+              alt="SPROUTY Dashboard"
             />
           </div>
         </div>
@@ -111,11 +113,11 @@ export default function LandingPage() {
           </p>
 
           <div className="cards">
-            <Card icon={<Layers size={30} />} title="All-In-One"
+            <Card icon={<MdLayers size={32} />} title="All-In-One"
               text="Everything you need to manage your centre in one powerful platform." />
-            <Card icon={<Zap size={20} />} title="Easy to use"
+            <Card icon={<Zap size={32} />} title="Easy to use"
               text="Intuitive design that anyone can master. No complex training required." />
-            <Card icon={<Heart size={20} />} title="Child-Centered"
+            <Card icon={<Heart size={32} />} title="Child-Centered"
               text="Built with children’s wellbeing and development at the heart." />
           </div>
 
@@ -177,9 +179,9 @@ export default function LandingPage() {
           </h2>
 
           <p className="discover-text">
-            Ready to transform your service with streamlined paperwork, enhanced 
-            family engagement and safety features? 
-            
+            Ready to transform your service with streamlined paperwork, enhanced
+            family engagement and safety features?
+
             Begin your journey to simplified management today.
           </p>
 
