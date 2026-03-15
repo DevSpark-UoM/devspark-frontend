@@ -1,0 +1,126 @@
+.mc-container {
+  padding: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mc-header {
+  margin-bottom: 32px;
+}
+
+.mc-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 8px;
+}
+
+.mc-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.mc-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mc-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: white;
+  border-radius: 20px;
+  padding: 24px 28px;
+  border: 1px solid #e8f0fe;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(106, 76, 255, 0.12);
+  border-color: rgba(106, 76, 255, 0.2);
+}
+
+.mc-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mc-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 3px solid #f1f5f9;
+}
+
+.mc-status-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.mc-status-dot.in { background: #22c55e; }
+.mc-status-dot.out { background: #94a3b8; }
+
+.mc-info {
+  flex: 1;
+}
+
+.mc-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 6px;
+}
+
+.mc-dob, .mc-group {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+
+.mc-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mc-badge.in  { background: #dcfce7; color: #15803d; }
+.mc-badge.out { background: #f1f5f9; color: #64748b; }
+
+.mc-arrow {
+  color: #94a3b8;
+  transition: transform 0.2s;
+}
+
+.mc-card:hover .mc-arrow {
+  transform: translateX(4px);
+  color: #6a4cff;
+}
+
+/* Dark Mode */
+.dark-mode .mc-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark-mode .mc-card:hover {
+  border-color: rgba(106, 76, 255, 0.4);
+}
+
+.dark-mode .mc-avatar {
+  border-color: #334155;
+}

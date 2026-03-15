@@ -1,0 +1,14 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-main {
+  flex: 1;
+  background: #f8fafc;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .admin-main {
+  background: #141414;
+}
