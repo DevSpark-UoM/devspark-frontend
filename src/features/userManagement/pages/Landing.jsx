@@ -57,7 +57,7 @@ export default function LandingPage() {
             </p>
 
             <div className="hero-cta">
-              <button className="btn primary" onClick={() => navigate("/login")}>
+              <button className="btn primary" onClick={() => navigate("/get-started")}>
                 Try It Out
               </button>
 
@@ -82,24 +82,28 @@ export default function LandingPage() {
 
       {/* ===== 2) WHY ===== */}
       <section id="why" className="why">
-        <div className="wrap wrap-cyan two-col">
-          <div>
-            <h2 className="h2">Why Choose SPROUTY?</h2>
-            <p className="p">
-              The nursery and childcare management app that does alsomost everything.
-              So you get more time with children.
-            </p>
-
-            <button className="btn primary" onClick={() => navigate("/learn-more")}>
-              Learn More
-            </button>
-          </div>
-
-          <div className="mock">
-            <img
-              src="https://images.unsplash.com/photo-1740721455292-e5cd29544381?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
-              alt="SPROUTY Dashboard"
-            />
+        <div className="mock-bg">
+          {/* blurred background image */}
+          <img
+            className="mock-bg-img"
+            src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
+            alt=""
+            aria-hidden="true"
+          />
+          {/* dark overlay */}
+          <div className="mock-dim" />
+          {/* content on top */}
+          <div className="mock-overlay">
+            <div className="wrap mock-content">
+              <h2 className="h2 mock-heading">Why Choose SPROUTY?</h2>
+              <p className="p mock-para">
+                The nursery and childcare management app that does almost everything.
+                So you get more time with children.
+              </p>
+              <button className="btn primary" onClick={() => navigate("/learn-more")}>
+                Learn More
+              </button>
+            </div>
           </div>
         </div>
       </section>
