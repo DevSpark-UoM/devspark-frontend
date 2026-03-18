@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../../components/admin/Sidebar';
-import { adminChildrenData } from '../../mockData/progressData';
-import { ProgressBarChart, AdminProgressPieChart, DailyProgressStackedBarChart } from '../../components/shared/ProgressChart';
+import { adminChildrenData } from '../../mockData/progress';
+import { ProgressBarChart, ProgressPieChart, DailyProgressStackedBarChart } from '../../components/shared/ProgressChart';
 import './AdminprogressPage.css';
 
 const AdminprogressPage = () => {
@@ -17,6 +17,11 @@ const AdminprogressPage = () => {
     const daysPerPage = 7;
 
     const currentChild = selectedChildId ? adminChildrenData[selectedChildId] : null;
+
+    const getAttendancePercentage = () => {
+        if (!currentChild || currentChild.totalDays === 0) return 0;
+        return ((currentChild.attendance / currentChild.totalDays) * 100).toFixed(1);
+    };
 
     // Helper to extract days between range
     const getDatesInRange = (start, end) => {
@@ -108,7 +113,7 @@ const AdminprogressPage = () => {
         labels: ['Present', 'Absent'],
         datasets: [{
             data: [currentChild.attendance, currentChild.totalDays - currentChild.attendance],
-            backgroundColor: ['#20c997', '#e2e8f0'],
+            backgroundColor: ['#3d8f8f', '#edf2f7'],
             borderWidth: 0
         }]
     } : { labels: [], datasets: [] };
@@ -299,9 +304,13 @@ const AdminprogressPage = () => {
                         </div>
 
                         <div className="chart-card">
-                            <h2>Attendance Record - {currentChild.name}</h2>
+                            <h2>Attendance Rate - {currentChild.name}</h2>
                             <div className="pie-container-fix admin-attendance-chart">
-                                <AdminProgressPieChart data={pieChartData} />
+                                <ProgressPieChart data={pieChartData} />
+                                <div className="pie-center-label">
+                                    <span className="percent-num adaptive-title">{getAttendancePercentage()}%</span>
+                                    <span className="sub-text adaptive-text">Present</span>
+                                </div>
                             </div>
                         </div>
                     </div>

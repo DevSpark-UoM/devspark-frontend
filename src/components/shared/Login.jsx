@@ -27,6 +27,14 @@ const Login = () => {
                         <span role="img" aria-label="parent">👨‍👩‍👧</span>
                         Login as Parent
                     </button>
+
+                    <button
+                        className="role-btn staff-btn"
+                        onClick={() => navigate('/teacher/progress')}
+                    >
+                        <span role="img" aria-label="staff">👩‍🏫</span>
+                        Login as Staff
+                    </button>
                 </div>
             </div>
         </div>

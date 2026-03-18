@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Sidebar from '../../components/parent/Sidebar'; 
+import Sidebar from '../../components/parent/Sidebar';
 import { ProgressBarChart, ProgressPieChart } from '../../components/shared/ProgressChart';
-import { childrenData } from '../../mockData/progressData';
+import ParentHelpChatbot from '../../components/parent/ParentHelpChatbot';
+import { childrenData } from '../../mockData/progress';
 import './ParentProgressPage.css';
 
 const ParentProgressPage = () => {
@@ -10,7 +11,7 @@ const ParentProgressPage = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [totalDaysInRange, setTotalDaysInRange] = useState(0);
-  
+
   // Pagination States
   const [currentPage, setCurrentPage] = useState(0);
   const daysPerPage = 7;
@@ -45,7 +46,7 @@ const ParentProgressPage = () => {
       return;
     }
     const diffTime = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
     setTotalDaysInRange(diffDays);
     setCurrentPage(0); // Reset to first page
     setShowData(true);
@@ -59,7 +60,7 @@ const ParentProgressPage = () => {
   // Pagination Logic for Chart
   const startIndex = currentPage * daysPerPage;
   const visibleLabels = allDatesInRange.slice(startIndex, startIndex + daysPerPage);
-  
+
   // Mapping engagement data to the current slice
   // (In real backend, you would fetch only the data for these dates)
   const visibleData = visibleLabels.map((_, idx) => {
@@ -68,7 +69,7 @@ const ParentProgressPage = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <Sidebar /> 
+      <Sidebar />
       <main className="main-content">
         <header className="top-header">
           <div className="adaptive-breadcrumb">Dashboard / Progress Report</div>
@@ -86,8 +87,8 @@ const ParentProgressPage = () => {
           <h1 className="adaptive-title main-heading">Progress Report</h1>
           <div className="date-filter">
             <span className="adaptive-label">Range: </span>
-            <input type="date" className="date-input adaptive-input" value={startDate} onChange={(e) => setStartDate(e.target.value)} /> 
-            <span className="adaptive-label">to</span> 
+            <input type="date" className="date-input adaptive-input" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            <span className="adaptive-label">to</span>
             <input type="date" className="date-input adaptive-input" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
             <button className="btn-view margin-left-fix" onClick={handleUpdateView}>Update View</button>
           </div>
@@ -123,19 +124,19 @@ const ParentProgressPage = () => {
               <div className="chart-item">
                 <div className="chart-header-flex">
                   <h3 className="adaptive-card-title chart-head">Activity Engagement</h3>
-                  
+
                   {/* PAGINATION CONTROLS (Your Arrow Mockup) */}
                   <div className="chart-pagination">
-                    <button 
-                      className="nav-arrow" 
+                    <button
+                      className="nav-arrow"
                       onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
                       disabled={currentPage === 0}
                     > ❮ </button>
                     <span className="page-indicator">
                       {startIndex + 1} - {Math.min(startIndex + daysPerPage, allDatesInRange.length)} of {allDatesInRange.length} Days
                     </span>
-                    <button 
-                      className="nav-arrow" 
+                    <button
+                      className="nav-arrow"
                       onClick={() => setCurrentPage(prev => prev + 1)}
                       disabled={startIndex + daysPerPage >= allDatesInRange.length}
                     > ❯ </button>
@@ -145,11 +146,11 @@ const ParentProgressPage = () => {
                 <div className="chart-box-fix">
                   <ProgressBarChart data={{
                     labels: visibleLabels, // Dynamic Dates
-                    datasets: [{ 
-                      label: 'Hours Spent', 
-                      data: visibleData, 
-                      backgroundColor: '#3d8f8f', 
-                      borderRadius: 5 
+                    datasets: [{
+                      label: 'Hours Spent',
+                      data: visibleData,
+                      backgroundColor: '#3d8f8f',
+                      borderRadius: 5
                     }]
                   }} />
                 </div>
@@ -160,10 +161,10 @@ const ParentProgressPage = () => {
                 <div className="pie-container-fix">
                   <ProgressPieChart data={{
                     labels: ['Present', 'Absent'],
-                    datasets: [{ 
-                      data: [getAttendancePercentage(), (100 - getAttendancePercentage())], 
-                      backgroundColor: ['#3d8f8f', '#edf2f7'], 
-                      borderWidth: 0 
+                    datasets: [{
+                      data: [getAttendancePercentage(), (100 - getAttendancePercentage())],
+                      backgroundColor: ['#3d8f8f', '#edf2f7'],
+                      borderWidth: 0
                     }]
                   }} />
                   <div className="pie-center-label">
@@ -176,6 +177,8 @@ const ParentProgressPage = () => {
           </div>
         )}
       </main>
+
+      <ParentHelpChatbot />
     </div>
   );
 };

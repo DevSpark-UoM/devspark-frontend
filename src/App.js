@@ -3,7 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdminprogressPage from './features/progressMonitoring/AdminprogressPage';
 import ParentProgressPage from './features/progressMonitoring/ParentProgressPage';
-import Login from './components/Login';
+import TeacherProgressPage from './features/progressMonitoring/TeacherProgressPage';
+import Login from './components/shared/Login';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/admin/progress" element={<AdminprogressPage />} />
           <Route path="/parent/progress" element={<ParentProgressPage />} />
+          <Route path="/teacher/progress" element={<TeacherProgressPage />} />
         </Routes>
       </div>
     </Router>

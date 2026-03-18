@@ -11,7 +11,7 @@ export const ProgressBarChart = ({ data }) => (
 );
 
 export const ProgressPieChart = ({ data }) => (
-  <Doughnut data={data} options={{ cutout: '80%', maintainAspectRatio: false }} />
+  <Doughnut data={data} options={{ cutout: '80%', maintainAspectRatio: false, plugins: { tooltip: { enabled: true, callbacks: { label: function(context) { const total = context.dataset.data.reduce((a, b) => a + b, 0); const percentage = ((context.raw / total) * 100).toFixed(1); return `${context.label}: ${percentage}%`; } } } } }} />
 );
 
 export const DailyProgressStackedBarChart = ({ data }) => (
