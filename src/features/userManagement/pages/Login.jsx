@@ -20,45 +20,53 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
+    // --- MOCK FALLBACK (Check localStorage first for evaluation) ---
+    const approvedUsers = JSON.parse(localStorage.getItem("approved_users") || "[]");
+    const mockUser = approvedUsers.find(u => u.email === email && u.password === password);
+    
+    // Also check for the hardcoded Admin for convenience
+    if (email === "sprouty@gmail.com" && password === "abc@123") {
+      localStorage.setItem("user", JSON.stringify({ email, firstName: "Anu", lastName: "Agarwal", role: "Admin" }));
+      navigate("/admin/dashboard");
+      return;
+    }
+
+    if (mockUser) {
+      localStorage.setItem("user", JSON.stringify(mockUser));
+      if (mockUser.role === "Admin") navigate("/admin/dashboard");
+      else if (mockUser.role === "Parent") navigate("/parent/dashboard");
+      else navigate("/home");
+      return;
+    }
+
+    // --- REAL BACKEND LOGIN ---
     try {
-      // Hardcoded login for frontend testing
-      if (email === "sprouty@gmail.com" && password === "abc@123") {
-        localStorage.setItem("admin", JSON.stringify({ email: email, role: "Admin" }));
-        navigate("/admin/dashboard");
-        return;
-      }
-
-      // Check for approved parents in localStorage (Simulated Backend)
-      const approvedUsers = JSON.parse(localStorage.getItem("approved_users") || "[]");
-      const user = approvedUsers.find(u => u.email === email && u.password === password);
-
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-        if (user.role === "Parent") {
-          navigate("/parent/dashboard");
-        } else {
-          navigate("/admin/dashboard");
-        }
-        return;
-      }
-
-      const response = await axios.post("http://localhost:8080/admin/login", {
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
         email,
         password,
       });
 
-      if (response.data) {
-        localStorage.setItem("admin", JSON.stringify(response.data));
-        navigate("/admin/dashboard");
+      if (response.data && response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        
+        const { role } = response.data.user;
+        if (role === "Admin" || role === "Owner") {
+          navigate("/admin/dashboard");
+        } else if (role === "Parent") {
+          navigate("/parent/dashboard");
+        } else {
+          navigate("/home");
+        }
       } else {
         setError("Invalid email or password");
       }
     } catch (err) {
       console.error("Login error:", err);
-      if (err.response) {
-        setError(`Login failed: ${err.response.status}`);
+      if (err.response && err.response.data && err.response.data.msg) {
+        setError(err.response.data.msg);
       } else {
-        setError("Backend not reachable. Use sprouty@gmail.com / abc@123");
+        setError("Backend not reachable. Falling back to mock data failed.");
       }
     }
   };

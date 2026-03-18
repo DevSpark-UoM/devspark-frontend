@@ -9,7 +9,19 @@ import GirlAvatar from "../../../../assets/girl.jpeg";
 export default function ChildProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const child = CHILDREN.find((c) => c.id === parseInt(id));
+
+  // Load from localStorage or fallback to static CHILDREN
+  const getChild = () => {
+    const saved = localStorage.getItem("admissions_students");
+    if (saved) {
+      const students = JSON.parse(saved);
+      const found = students.find(s => s.id === parseInt(id));
+      if (found) return found;
+    }
+    return CHILDREN.find((c) => c.id === parseInt(id));
+  };
+
+  const child = getChild();
 
   if (!child) {
     return (
@@ -102,6 +114,33 @@ export default function ChildProfile() {
           </div>
         </div>
 
+        {/* Parent & Emergency Info */}
+        <div className="cp-section">
+          <h3 className="cp-section-title">
+            <MdPeople size={18} /> Parent Information
+          </h3>
+          <div className="cp-detail-row">
+            <span className="cp-detail-label">Name</span>
+            <span className="cp-detail-value">{child.parentFullName || "N/A"}</span>
+          </div>
+          <div className="cp-detail-row">
+            <span className="cp-detail-label">Relationship</span>
+            <span className="cp-detail-value">{child.relationship || "N/A"}</span>
+          </div>
+          <div className="cp-detail-row">
+            <span className="cp-detail-label">Occupation</span>
+            <span className="cp-detail-value">{child.parentOccupation || "N/A"}</span>
+          </div>
+          <div className="cp-detail-row">
+            <span className="cp-detail-label">Phone (SL)</span>
+            <span className="cp-detail-value">{child.parentPhone || "N/A"}</span>
+          </div>
+          <div className="cp-detail-row">
+            <span className="cp-detail-label">Email</span>
+            <span className="cp-detail-value">{child.parentEmail || "N/A"}</span>
+          </div>
+        </div>
+
         {/* Health & Safety */}
         <div className="cp-section">
           <h3 className="cp-section-title">
@@ -109,13 +148,13 @@ export default function ChildProfile() {
           </h3>
           <div className="cp-detail-row">
             <span className="cp-detail-label">Known Allergies</span>
-            <span className={`cp-detail-value ${child.allergies !== "None" ? "cp-alert" : ""}`}>
-              {child.allergies}
+            <span className={`cp-detail-value ${child.allergies && child.allergies !== "None" ? "cp-alert" : ""}`}>
+              {child.allergies || "None"}
             </span>
           </div>
           <div className="cp-detail-row">
             <span className="cp-detail-label">Emergency Contact</span>
-            <span className="cp-detail-value">{child.emergencyContact}</span>
+            <span className="cp-detail-value">{child.emergencyContact || child.emergencyContact || "N/A"}</span>
           </div>
         </div>
 

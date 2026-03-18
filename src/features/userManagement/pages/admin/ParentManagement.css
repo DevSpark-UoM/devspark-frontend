@@ -1,0 +1,132 @@
+.parent-management-page {
+  padding: 24px;
+  background: #f8fafc;
+  min-height: calc(100vh - 64px);
+}
+
+.parent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.parent-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.parent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.1);
+}
+
+.parent-card-main {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+.parent-avatar-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 4px solid #f1f5f9;
+  flex-shrink: 0;
+}
+
+.parent-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.parent-info h3 {
+  font-size: 18px;
+  color: #1e293b;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.parent-relation {
+  font-size: 13px;
+  color: #00d2ff;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.parent-contact-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.contact-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.parent-card-footer {
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-parent-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-parent-btn:hover {
+  background: #00d2ff;
+  color: #fff;
+  border-color: #00d2ff;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: #94a3b8;
+}
+
+.empty-state p {
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+/* Dark Mode support */
+[data-theme='dark'] .parent-card { background: #1e293b; border-color: #334155; }
+[data-theme='dark'] .parent-info h3 { color: #f8fafc; }
+[data-theme='dark'] .parent-contact-strip .contact-item { color: #94a3b8; }
+[data-theme='dark'] .parent-card-footer { background: #1e293b; border-color: #334155; }
+[data-theme='dark'] .edit-parent-btn { background: #0f172a; border-color: #334155; color: #f1f5f9; }
+[data-theme='dark'] .parent-avatar-wrap { border-color: #334155; }

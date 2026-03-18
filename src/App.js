@@ -15,6 +15,11 @@ import AdminDashboard from "./features/userManagement/pages/admin/AdminDashboard
 import AdminProfile from "./features/userManagement/pages/admin/AdminProfile";
 import ManageUsers from "./features/userManagement/pages/admin/ManageUsers";
 import AuditLogs from "./features/userManagement/pages/admin/AuditLogs";
+import AdmissionsDashboard from "./features/userManagement/pages/admin/AdmissionsDashboard";
+import AddStudent from "./features/userManagement/pages/admin/AddStudent";
+import StudentManagement from "./features/userManagement/pages/admin/StudentManagement";
+import ParentManagement from "./features/userManagement/pages/admin/ParentManagement";
+import AdminParentEdit from "./features/userManagement/pages/admin/AdminParentEdit";
 
 /* Parent Pages */
 import ParentLayout from "./features/userManagement/pages/parent/ParentLayout.jsx";
@@ -47,6 +52,13 @@ function App() {
         {/* Admin */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="admissions" element={<AdmissionsDashboard />} />
+          <Route path="admissions/status" element={<AdmissionsDashboard />} />
+          <Route path="admissions/add" element={<AddStudent />} />
+          <Route path="admissions/edit/:id" element={<AddStudent />} />
+          <Route path="students" element={<StudentManagement />} />
+          <Route path="parents" element={<ParentManagement />} />
+          <Route path="parents/edit/:id" element={<AdminParentEdit />} />
           <Route path="profile" element={<AdminProfile />} />
           <Route path="users" element={<ManageUsers />} />
           <Route path="logs" element={<AuditLogs />} />

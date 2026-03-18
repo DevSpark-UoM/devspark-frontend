@@ -57,13 +57,8 @@ export default function LandingPage() {
             </p>
 
             <div className="hero-cta">
-              <button className="btn primary" onClick={() => navigate("/get-started")}>
-                Try It Out
-              </button>
-
               <button className="btn secondary" onClick={() => scrollTo("discover")}>
-                <PlayCircle size={18} />
-                Watch Demo
+                Request Form
               </button>
             </div>
           </div>
