@@ -1,0 +1,16 @@
+.parent-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+}
+
+.parent-main {
+  flex: 1;
+  padding: 40px 50px;
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .parent-layout {
+  background-color: #0f172a;
+}
